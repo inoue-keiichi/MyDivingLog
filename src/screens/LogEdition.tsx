@@ -17,29 +17,17 @@ function LogEdition() {
   };
 
   const hoge: InputType[] = [
-    {
-      label: "Country",
-      pattern: "text"
-    },
-    {
-      label: "Date",
-      pattern: "date"
-    },
-    {
-      label: "Location",
-      pattern: "text"
-    },
-    {
-      label: "Point",
-      pattern: "text"
-    }
+    new InputType("Country", "text"),
+    new InputType("Date", "date"),
+    new InputType("Location", "text"),
+    new InputType("Point", "text"),
   ]
 
   return (
     <View style={styles.view}>
       <FlatList
         data={hoge}
-        //keyExtractor={item => `${item.id}`}
+        keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {
           return createElement(item);
         }}

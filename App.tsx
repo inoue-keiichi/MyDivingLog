@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Log from './screens/Log';
-import History from './screens/History';
+import Log from './src/screens/Log';
+import History from './src/screens/History';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { FontAwesome, Entypo } from '@expo/vector-icons';
