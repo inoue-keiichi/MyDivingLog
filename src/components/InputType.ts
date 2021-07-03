@@ -1,4 +1,4 @@
-class InputType {
+export class InputType {
   private _id: number;
   private _label: string;
   private _pattern: Pattern;

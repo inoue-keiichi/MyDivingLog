@@ -1,33 +1,9 @@
-// import React, { useState } from 'react';
-// import { View, Text, StyleSheet, ScrollView, FlatList, Button } from 'react-native';
-// import { useRoute, useNavigation } from '@react-navigation/native';
-// import { FAB, TextInput } from 'react-native-paper';
-// import { Item } from 'react-native-paper/lib/typescript/components/List/List';
-// import DateTimePickerModal from "react-native-modal-datetime-picker";
-
-// const DatePicker = () => {
-//   return (
-//     <View>
-//       <FAB
-//         small icon="plus"
-//         onPress={() => { }} />
-//       <DateTimePickerModal
-//         isVisible={false}
-//         mode="date"
-//         onConfirm={() => { }}
-//         onCancel={() => { }}
-//       />
-//     </View>);
-// }
-
-// export default DatePicker;
-
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { FAB, TextInput, Button } from 'react-native-paper';
 
-const DatePicker = (props) => {
+const DatePicker = (props: any) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [date, setDate] = useState(new Date().toLocaleDateString());
 
@@ -48,16 +24,12 @@ const DatePicker = (props) => {
     <View>
       <TextInput
         mode="outlined"
-        //label={props.label}
         editable={false}
         style={styles.textInput}
         left={<TextInput.Icon name="calendar" onPress={showDatePicker} />}
       >
         {date}
       </TextInput>
-      {/* <Button icon="calendar" mode='outlined' style={styles.textInput} onPress={showDatePicker}>
-        {text}
-      </Button> */}
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"
