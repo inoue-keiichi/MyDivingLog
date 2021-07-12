@@ -6,8 +6,8 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { FAB, TextInput } from 'react-native-paper';
 import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 import DatePicker from "../components/DatePicker";
-import { InputType } from "../components/InputType";
-import { LogInfo } from '../components/LogInfo';
+import { InputType } from "../class/InputType";
+import { LogInfo } from '../class/LogInfo';
 
 const LogEdition = () => {
   const navigation = useNavigation();

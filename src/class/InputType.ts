@@ -1,3 +1,5 @@
+import i18n from '../i18n/initI18n';
+
 export class InputType {
   private _id: number;
   private _name: Name;
@@ -10,7 +12,7 @@ export class InputType {
     this._id = InputType.num;
     InputType.num++;
     this._name = name;
-    this._label = name;
+    this._label = i18n.t(name);
     this._pattern = pattern;
   }
 
