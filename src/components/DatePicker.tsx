@@ -27,6 +27,7 @@ const DatePicker = (props: any) => {
         editable={false}
         style={styles.textInput}
         left={<TextInput.Icon name="calendar" onPress={showDatePicker} />}
+        onChangeText={props.onChangeText(date)}
       >
         {date}
       </TextInput>

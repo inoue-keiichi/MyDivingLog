@@ -1,19 +1,25 @@
 export class InputType {
   private _id: number;
+  private _name: Name;
   private _label: string;
   private _pattern: Pattern;
 
   private static num: number = 0;
 
-  constructor(label: string, pattern: Pattern) {
+  constructor(name: Name, pattern: Pattern) {
     this._id = InputType.num;
     InputType.num++;
-    this._label = label;
+    this._name = name;
+    this._label = name;
     this._pattern = pattern;
   }
 
   get id(): number {
     return this._id;
+  }
+
+  get name(): Name {
+    return this._name;
   }
 
   get label(): string {
@@ -26,3 +32,5 @@ export class InputType {
 }
 
 type Pattern = "text" | "date" | "time"
+
+type Name = "date" | "country" | "location" | "point"
