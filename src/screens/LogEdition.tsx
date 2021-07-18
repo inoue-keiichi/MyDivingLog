@@ -1,18 +1,35 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Button } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { FAB, TextInput } from 'react-native-paper';
 import { Item } from 'react-native-paper/lib/typescript/components/List/List';
 import DatePicker from "../components/DatePicker";
-import { InputType } from "../class/InputType";
+import { InputType, Name } from "../class/InputType";
 import { LogInfo } from '../class/LogInfo';
+import { RouteParam } from '../class/RouteParam';
+import LogEditionElement from '../components/LogEditionElement';
 
 const LogEdition = () => {
   const navigation = useNavigation();
-  const logInfoInit: Partial<LogInfo> = {};
+  const route = useRoute<RouteProp<RouteParam, "LogInfo">>();
+
+  const logInfoInit: Partial<LogInfo> = route.params == null ? new LogInfo({}) : route.params.logInfo;
   const [logInfo, setLogInfo] = useState(logInfoInit);
+
+
+
+  // useEffect(() => {
+  //   if (route.params == null || route.params.logInfo == null) {
+  //     return;
+  //   }
+  //   setLogInfo(route.params.logInfo);
+  //   alert(JSON.stringify(route.params.logInfo));
+  // }, [logInfo]);
+
+
+
 
   const data = {};
 
@@ -21,67 +38,33 @@ const LogEdition = () => {
   };
 
   const update = () => {
-    const hhh: LogInfo = new LogInfo(logInfo);
-    alert(JSON.stringify(hhh));
-    navigation.navigate('LogList', { data });
+    //const result = logInfo.location != null ? new LogInfo(logInfo) : null;
+    navigation.navigate('LogList', { logInfo: logInfo });
   };
 
-  const hoge: InputType[] = [
+  const inputTypeList: InputType[] = [
     new InputType("country", "text"),
     new InputType("date", "date"),
     new InputType("location", "text"),
     new InputType("point", "text"),
   ]
 
-  const createElement = (inputType: InputType) => {
-    switch (inputType.pattern) {
-      case 'text':
-        return (
-          <View>
-            <TextInput
-              mode="outlined"
-              label={inputType.label}
-              style={styles.textInput}
-              onChangeText={(text) => {
-                logInfo[inputType.name] = text;
-                setLogInfo(logInfo);
-              }}
-            />
-          </View>
-        );
-      case 'date':
-        return (
-          <DatePicker
-            label={inputType.label}
-            onChangeText={(text: string) => {
-              logInfo[inputType.name] = text;
-              setLogInfo(logInfo);
-            }}
-          />
-        );
-      default:
-        return (
-          <TextInput
-            mode="outlined"
-            label={inputType.label}
-            style={styles.textInput}
-            onChangeText={(text) => {
-              logInfo[inputType.name] = text;
-              setLogInfo(logInfo);
-            }}
-          />
-        );
-    }
-  }
+
 
   return (
     <View style={{ padding: 10, flex: 1 }}>
       <View style={styles.container}>
         <FlatList
-          data={hoge}
-          keyExtractor={item => `${item.id}`}
+          data={inputTypeList}
+          keyExtractor={item => `${item.name}`}
           renderItem={({ item }) => {
-            return createElement(item);
+            return <LogEditionElement inputType={item} value={logInfo[item.name] as string} logInfo={logInfo}
+              handler={(text: string) => {
+                setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
+
+                //alert(JSON.stringify(logInfo))
+              }}
+            />
           }}
           numColumns={2}
           contentContainerStyle={styles.listContainer} />

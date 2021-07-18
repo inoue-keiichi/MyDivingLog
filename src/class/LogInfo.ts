@@ -1,3 +1,5 @@
+import { Name } from "./InputType";
+
 export class LogInfo {
     private _id: number;
     private _date: string | null;
@@ -12,10 +14,17 @@ export class LogInfo {
         this._country = null;
         this._location = null;
         this._point = null;
+        this._id = LogInfo.NEXT_ID;
 
         Object.assign(this, logInfo);
-        this._id = LogInfo.NEXT_ID;
-        LogInfo.NEXT_ID++;
+        if (logInfo.id == null) {
+            //this._id = LogInfo.NEXT_ID;
+            LogInfo.NEXT_ID++;
+        }
+    }
+
+    public update(logInfo: Partial<LogInfo>) {
+        Object.assign(this, logInfo);
     }
 
     get id(): number {

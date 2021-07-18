@@ -3,9 +3,15 @@ import { View, StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { FAB, TextInput, Button } from 'react-native-paper';
 
-const DatePicker = (props: any) => {
+type Props = {
+  value: string,
+  onChangeText: (text: string) => void
+}
+
+const DatePicker: React.FC<Props> = ({ value, onChangeText }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [date, setDate] = useState(new Date().toLocaleDateString());
+  const dateInit = value == null ? new Date().toLocaleDateString() : value;
+  const [date, setDate] = useState(dateInit);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -15,8 +21,9 @@ const DatePicker = (props: any) => {
     setDatePickerVisibility(false);
   };
 
-  const handleConfirm = (date: Date) => {
-    setDate(date.toLocaleDateString());
+  const handleConfirm = (input: Date) => {
+    setDate(input.toLocaleDateString());
+    onChangeText(input.toLocaleDateString());
     hideDatePicker();
   };
 
@@ -27,7 +34,7 @@ const DatePicker = (props: any) => {
         editable={false}
         style={styles.textInput}
         left={<TextInput.Icon name="calendar" onPress={showDatePicker} />}
-        onChangeText={props.onChangeText(date)}
+        onChangeText={() => { onChangeText(date) }}
       >
         {date}
       </TextInput>
