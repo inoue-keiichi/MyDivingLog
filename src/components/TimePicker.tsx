@@ -12,40 +12,44 @@ type Props = {
 
 const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const dateInit = value == null ? new Date().toLocaleDateString() : value;
-  const [date, setDate] = useState(dateInit);
+  const timeInit = value == null ? "" : value;
+  const [time, setTime] = useState(timeInit);
 
-  const showDatePicker = () => {
+  const showTimePicker = () => {
     setDatePickerVisibility(true);
   };
 
-  const hideDatePicker = () => {
+  const hideTimePicker = () => {
     setDatePickerVisibility(false);
   };
 
   const handleConfirm = (input: Date) => {
-    setDate(input.toLocaleDateString());
-    onChangeText(input.toLocaleDateString());
-    hideDatePicker();
+    setTime(`${input.getHours()}:${input.getMinutes()}`);
+    onChangeText(`${input.getHours()}:${input.getMinutes()}`);
+    hideTimePicker();
   };
 
   return (
     <View style={{ flexDirection: 'row', }}>
       <TextInput
         mode="outlined"
-        value={date}
+        value={time}
         label={label}
         editable={false}
         style={style}
-        left={<TextInput.Icon name="calendar" style={styles.icon} onPress={showDatePicker} />}
-        onChangeText={() => { onChangeText(date) }}
-      />
+        left={<TextInput.Icon name="av-timer" style={styles.icon}
+          onPress={() => {
+            showTimePicker();
+          }} />}
+        onChangeText={() => { onChangeText(time) }}
+      >
+      </TextInput>
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
-        mode="date"
+        mode="time"
         locale="ja-JA"
         onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
+        onCancel={hideTimePicker}
       />
     </View >
   );

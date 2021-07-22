@@ -6,6 +6,8 @@ export class LogInfo {
     private _country: string | null;
     private _location: string | null;
     private _point: string | null;
+    private _entryTime: string | null;
+    private _exitTime: string | null;
 
     private static NEXT_ID: number = 1;
 
@@ -14,11 +16,12 @@ export class LogInfo {
         this._country = null;
         this._location = null;
         this._point = null;
+        this._entryTime = null;
+        this._exitTime = null;
         this._id = LogInfo.NEXT_ID;
 
         Object.assign(this, logInfo);
         if (logInfo.id == null) {
-            //this._id = LogInfo.NEXT_ID;
             LogInfo.NEXT_ID++;
         }
     }
@@ -29,6 +32,10 @@ export class LogInfo {
 
     get id(): number {
         return this._id;
+    }
+
+    get diveNumber(): string {
+        return `${this._id}`;
     }
 
     get date(): string | null {
@@ -61,5 +68,21 @@ export class LogInfo {
 
     set point(point: string | null) {
         this._point = point;
+    }
+
+    get entryTime(): string | null {
+        return this._entryTime;
+    }
+
+    set entryTime(entryTime: string | null) {
+        this._entryTime = entryTime;
+    }
+
+    get exitTime(): string | null {
+        return this._exitTime;
+    }
+
+    set exitTime(exitTime: string | null) {
+        this._exitTime = exitTime;
     }
 }

@@ -43,10 +43,13 @@ const LogEdition = () => {
   };
 
   const inputTypeList: InputType[] = [
-    new InputType("country", "text"),
+    new InputType("diveNumber", "text"),
     new InputType("date", "date"),
+    new InputType("country", "text"),
     new InputType("location", "text"),
     new InputType("point", "text"),
+    new InputType("entryTime", "time"),
+    new InputType("exitTime", "time"),
   ]
 
 
@@ -61,8 +64,6 @@ const LogEdition = () => {
             return <LogEditionElement inputType={item} value={logInfo[item.name] as string} logInfo={logInfo}
               handler={(text: string) => {
                 setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
-
-                //alert(JSON.stringify(logInfo))
               }}
             />
           }}

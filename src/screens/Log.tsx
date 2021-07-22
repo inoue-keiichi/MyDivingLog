@@ -4,10 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LogList from './LogList';
 import LogEdition from './LogEdition';
 import LogCustomization from './LogCustomization';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteParam } from '../class/RouteParam';
 
 const Stack = createStackNavigator();
 
 function Log({ navigation }) {
+  //const route = useRoute<RouteProp<RouteParam, "LogInfo">>();
+
   return (
     <Stack.Navigator>
       <Stack.Screen

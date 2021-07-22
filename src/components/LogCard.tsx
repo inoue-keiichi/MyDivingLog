@@ -10,7 +10,7 @@ type Props = {
 
 const LogCard: React.FC<Props> = ({ logInfo }) => {
   const navigation = useNavigation();
-  alert(logInfo.date)
+  alert(JSON.stringify(logInfo))
   return (
     <Card style={styles.container} onPress={
       () => {

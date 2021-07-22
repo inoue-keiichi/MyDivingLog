@@ -35,4 +35,4 @@ export class InputType {
 
 type Pattern = "text" | "date" | "time"
 
-export type Name = "date" | "country" | "location" | "point"
+export type Name = "diveNumber" | "date" | "country" | "location" | "point" | "entryTime" | "exitTime"
