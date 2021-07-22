@@ -11,16 +11,16 @@ type Props = {
 }
 
 const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const timeInit = value == null ? "" : value;
   const [time, setTime] = useState(timeInit);
 
   const showTimePicker = () => {
-    setDatePickerVisibility(true);
+    setTimePickerVisibility(true);
   };
 
   const hideTimePicker = () => {
-    setDatePickerVisibility(false);
+    setTimePickerVisibility(false);
   };
 
   const handleConfirm = (input: Date) => {
@@ -45,7 +45,7 @@ const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
       >
       </TextInput>
       <DateTimePickerModal
-        isVisible={isDatePickerVisible}
+        isVisible={isTimePickerVisible}
         mode="time"
         locale="ja-JA"
         onConfirm={handleConfirm}
