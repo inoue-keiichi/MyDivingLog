@@ -60,7 +60,6 @@ const LogEditionElement: React.FC<Props> = ({ inputType, value, logInfo, handler
           label={inputType.label}
           style={styles.textInput}
           onChangeText={(text) => {
-            //logInfo[inputType.name] = text;
             handler(text);
           }}
         />

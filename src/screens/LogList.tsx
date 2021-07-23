@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { FAB, Card, Title, Paragraph, Button } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 import { LogInfo } from '../class/LogInfo';
 import LogCard from '../components/LogCard';
 import { RouteParam } from '../class/RouteParam';
@@ -21,6 +21,11 @@ const LogList = () => {
       return;
     }
 
+    updateLogInfoList();
+    updateDiveTime();
+  }, [route.params]);
+
+  const updateLogInfoList = () => {
     const target = logInfoList.find(logInfo => logInfo.id === route.params.logInfo.id);
     if (target === undefined) {
       setLogInfoList([...logInfoList, route.params.logInfo])
@@ -31,7 +36,15 @@ const LogList = () => {
       tmp[index] = target;
       setLogInfoList(tmp)
     }
-  }, [route.params]);
+  }
+
+  const updateDiveTime = () => {
+    let result = 0;
+    logInfoList.filter(logInfo => logInfo.intervalMinutes != null).forEach(logInfo => {
+      result = result + (logInfo.intervalMinutes as number);
+    });
+    return result;
+  }
 
   const onPressEditButton = () => {
     navigation.navigate('LogEdition');
@@ -47,9 +60,8 @@ const LogList = () => {
         }}
         numColumns={2}
         contentContainerStyle={styles.listContainer} />
-      <FAB small icon="plus" style={styles.fab} onPress={() => onPressEditButton()} />
+      <FAB icon="plus" style={styles.fab} onPress={() => onPressEditButton()} />
     </View>
-
   );
 }
 

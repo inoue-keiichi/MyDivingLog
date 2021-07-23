@@ -8,6 +8,7 @@ export class LogInfo {
     private _point: string | null;
     private _entryTime: string | null;
     private _exitTime: string | null;
+    private _intervalMinutes: number | null;
 
     private static NEXT_ID: number = 1;
 
@@ -18,6 +19,7 @@ export class LogInfo {
         this._point = null;
         this._entryTime = null;
         this._exitTime = null;
+        this._intervalMinutes = null;
         this._id = LogInfo.NEXT_ID;
 
         Object.assign(this, logInfo);
@@ -84,5 +86,13 @@ export class LogInfo {
 
     set exitTime(exitTime: string | null) {
         this._exitTime = exitTime;
+    }
+
+    get intervalMinutes(): number | null {
+        return this._intervalMinutes;
+    }
+
+    set intervalMinutes(intervalMinutes: number | null) {
+        this._intervalMinutes = intervalMinutes;
     }
 }

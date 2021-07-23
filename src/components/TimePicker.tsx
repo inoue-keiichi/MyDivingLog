@@ -10,7 +10,7 @@ type Props = {
   onChangeText: (text: string) => void
 }
 
-const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
+const TimePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const timeInit = value == null ? "" : value;
   const [time, setTime] = useState(timeInit);
@@ -24,8 +24,8 @@ const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   };
 
   const handleConfirm = (input: Date) => {
-    setTime(`${input.getHours()}:${input.getMinutes()}`);
-    onChangeText(`${input.getHours()}:${input.getMinutes()}`);
+    setTime(`${("0" + input.getHours()).slice(-2)}:${("0" + input.getMinutes()).slice(-2)}`);
+    onChangeText(`${("0" + input.getHours()).slice(-2)}:${("0" + input.getMinutes()).slice(-2)}`);
     hideTimePicker();
   };
 
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DatePicker;
+export default TimePicker;

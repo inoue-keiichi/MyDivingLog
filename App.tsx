@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Log from './src/screens/Log';
-import History from './src/screens/History';
+import Profile from './src/screens/Profile';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { FontAwesome, Entypo } from '@expo/vector-icons';
+import i18n from './src/i18n/initI18n';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,18 +18,18 @@ function App() {
             name="Log"
             component={Log}
             options={{
-              tabBarLabel: 'Log',
+              tabBarLabel: i18n.t("log.title"),
               tabBarIcon: ({ color, size }) => (
                 <FontAwesome name="book" size={32} color="green" />
               ),
             }} />
           <Tab.Screen
             name="History"
-            component={History}
+            component={Profile}
             options={{
-              tabBarLabel: 'History',
+              tabBarLabel: i18n.t("profile.title"),
               tabBarIcon: ({ color, size }) => (
-                <FontAwesome name="trophy" size={32} color="green" />
+                <FontAwesome name="user" size={32} color="green" />
               ),
             }} />
         </Tab.Navigator>

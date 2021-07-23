@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { Card, Title, Paragraph, Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { Card, Title, Paragraph } from 'react-native-paper';
 import { Dimensions, StyleSheet } from 'react-native';
 import { LogInfo } from '../class/LogInfo';
 
@@ -10,7 +10,6 @@ type Props = {
 
 const LogCard: React.FC<Props> = ({ logInfo }) => {
   const navigation = useNavigation();
-  alert(JSON.stringify(logInfo))
   return (
     <Card style={styles.container} onPress={
       () => {
@@ -26,14 +25,10 @@ const LogCard: React.FC<Props> = ({ logInfo }) => {
   )
 }
 
-
-const ITEM_WIDTH = Dimensions.get('window').width
-const ITEM_HEIGHT = Dimensions.get('window').height
-
+const ITEM_WIDTH = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     width: ITEM_WIDTH / 2.3,
-    //height: ITEM_HEIGHT / 5.0,
     margin: 10,
     borderRadius: 8,
   },
