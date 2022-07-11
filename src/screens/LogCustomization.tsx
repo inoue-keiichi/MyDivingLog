@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+    justifyContent: 'center',
+  },
+});
 
 export default LogCustomization;

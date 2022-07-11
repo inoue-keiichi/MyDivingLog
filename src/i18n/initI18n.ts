@@ -7,4 +7,4 @@ i18n.fallbacks = true;
 i18n.translations = { ja, en };
 i18n.locale = Localization.locale;
 
-export default i18n
+export default i18n;

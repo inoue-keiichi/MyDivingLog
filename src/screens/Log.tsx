@@ -14,20 +14,22 @@ function Log({ navigation }) {
         name="LogList"
         component={LogList}
         options={{
-          title: i18n.t("log.list"),
+          title: i18n.t('log.list'),
           headerStyle: {
             backgroundColor: 'skyblue',
           },
-        }} />
+        }}
+      />
       <Stack.Screen
         name="LogEdition"
         component={LogEdition}
         options={{
-          title: i18n.t("log.edition"),
+          title: i18n.t('log.edition'),
           headerStyle: {
             backgroundColor: 'skyblue',
-          }
-        }} />
+          },
+        }}
+      />
       <Stack.Screen
         name="LogCustomization"
         component={LogCustomization}
@@ -36,7 +38,8 @@ function Log({ navigation }) {
           headerStyle: {
             backgroundColor: 'skyblue',
           },
-        }} />
+        }}
+      />
     </Stack.Navigator>
   );
 }

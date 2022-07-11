@@ -1,17 +1,17 @@
 import i18n from '../i18n/initI18n';
 
 export class InputType {
-  private _name: Name;
+  private _name: string;
   private _label: string;
   private _pattern: Pattern;
 
-  constructor(name: Name, pattern: Pattern) {
+  constructor(name: string, pattern: Pattern) {
     this._name = name;
     this._label = i18n.t(`log.${name}`);
     this._pattern = pattern;
   }
 
-  get name(): Name {
+  get name(): string {
     return this._name;
   }
 
@@ -24,6 +24,6 @@ export class InputType {
   }
 }
 
-type Pattern = "text" | "date" | "time"
+type Pattern = 'text' | 'date' | 'time';
 
-export type Name = "diveNumber" | "date" | "country" | "location" | "point" | "entryTime" | "exitTime"
+//export type Name = "diveNumber" | "date" | "country" | "location" | "point" | "entryTime" | "exitTime"

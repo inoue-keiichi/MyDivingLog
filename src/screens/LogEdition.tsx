@@ -1,20 +1,21 @@
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { FAB } from 'react-native-paper';
-import { InputType } from "../class/InputType";
+import { Button, FAB, TextInput } from 'react-native-paper';
+import { InputType } from '../class/InputType';
 import { LogInfo } from '../class/LogInfo';
 import { RouteParam } from '../class/RouteParam';
 import LogEditionElement from '../components/LogEditionElement';
 import { FontAwesome } from '@expo/vector-icons';
+import NumberPicker from '../components/NumberPicker';
+import { Picker } from '@react-native-picker/picker';
 
 const LogEdition = () => {
   const navigation = useNavigation();
-  const route = useRoute<RouteProp<RouteParam, "LogInfo">>();
+  const route = useRoute<RouteProp<RouteParam, 'LogInfo'>>();
 
-  const logInfoInit: Partial<LogInfo> = route.params == null ? new LogInfo({}) : route.params.logInfo;
+  const logInfoInit: Partial<LogInfo> =
+    route.params == null ? new LogInfo({}) : route.params.logInfo;
   const [logInfo, setLogInfo] = useState(logInfoInit);
 
   // useEffect(() => {
@@ -34,14 +35,15 @@ const LogEdition = () => {
   };
 
   const inputTypeList: InputType[] = [
-    new InputType("diveNumber", "text"),
-    new InputType("date", "date"),
-    new InputType("country", "text"),
-    new InputType("location", "text"),
-    new InputType("point", "text"),
-    new InputType("entryTime", "time"),
-    new InputType("exitTime", "time"),
-  ]
+    new InputType('diveNumber', 'text'),
+    new InputType('date', 'date'),
+    new InputType('country', 'text'),
+    new InputType('location', 'text'),
+    new InputType('point', 'text'),
+    new InputType('entryTime', 'time'),
+    new InputType('exitTime', 'time'),
+    new InputType('maxDepth', 'text'),
+  ];
 
   return (
     <View style={styles.container}>
@@ -49,19 +51,30 @@ const LogEdition = () => {
         data={inputTypeList}
         keyExtractor={item => `${item.name}`}
         renderItem={({ item }) => {
-          return <LogEditionElement inputType={item} value={logInfo[item.name] as string} logInfo={logInfo}
-            handler={(text: string) => {
-              setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
-            }}
-          />
+          return (
+            <LogEditionElement
+              inputType={item}
+              value={logInfo[item.name] as string}
+              logInfo={logInfo}
+              handler={(text: string) => {
+                setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
+              }}
+            />
+          );
         }}
         numColumns={2}
-        contentContainerStyle={styles.listContainer} />
-      <FAB icon="content-save" style={[styles.fab, { right: 30 }]} onPress={() => update()} />
+        contentContainerStyle={styles.listContainer}
+      />
+      <FAB
+        icon="content-save"
+        style={[styles.fab, { right: 30 }]}
+        onPress={() => update()}
+      />
       {/* <FAB icon="table-edit" style={[styles.fab, { right: 30 }]} onPress={() => onPressEditButton()} /> */}
+      {/* <TextInput mode="outlined" keyboardType="decimal-pad"></TextInput> */}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -72,13 +85,13 @@ const styles = StyleSheet.create({
   fab: {
     bottom: 30,
     position: 'absolute',
-    backgroundColor: "skyblue",
+    backgroundColor: 'skyblue',
   },
   listContainer: {
     flexGrow: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-})
+});
 
 export default LogEdition;
 

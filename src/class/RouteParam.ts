@@ -1,8 +1,7 @@
-import { LogInfo } from "./LogInfo";
-
+import { LogInfo } from './LogInfo';
 
 export type RouteParam = {
-    LogInfo: {
-        logInfo: LogInfo;
-    }
+  LogInfo: {
+    logInfo: LogInfo;
+  };
 };
