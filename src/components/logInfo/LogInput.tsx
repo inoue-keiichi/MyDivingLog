@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
-import { InputField } from '../class/InputField';
-import DatePicker from '../components/DatePicker';
-import TimePicker from './TimePicker';
+import { StyleSheet } from 'react-native';
+import { InputField } from '../../class/InputField';
+import DatePicker from './picker/DatePicker';
+import TimePicker from './picker/TimePicker';
 
 interface Props {
   inputType: InputField;
@@ -11,21 +11,19 @@ interface Props {
   handler: (text: string) => void;
 }
 
-const LogEditionElement: React.FC<Props> = ({ inputType, handler }) => {
+const LogInput: React.FC<Props> = ({ inputType, handler }) => {
   switch (inputType.pattern) {
     case 'text':
       return (
-        <View>
-          <TextInput
-            mode="outlined"
-            value={inputType.value}
-            label={inputType.label}
-            style={styles.textInput}
-            onChangeText={text => {
-              handler(text);
-            }}
-          />
-        </View>
+        <TextInput
+          mode="outlined"
+          value={inputType.value}
+          label={inputType.label}
+          style={styles.textInput}
+          onChangeText={text => {
+            handler(text);
+          }}
+        />
       );
     case 'date':
       return (
@@ -53,19 +51,27 @@ const LogEditionElement: React.FC<Props> = ({ inputType, handler }) => {
       return (
         <TextInput
           mode="outlined"
+          keyboardType="number-pad"
           value={inputType.value}
           label={inputType.label}
           style={styles.textInput}
-          keyboardType="number-pad"></TextInput>
+          onChangeText={text => {
+            handler(text);
+          }}
+        />
       );
     case 'decimal':
       return (
         <TextInput
           mode="outlined"
+          keyboardType="decimal-pad"
           value={inputType.value}
           label={inputType.label}
           style={styles.textInput}
-          keyboardType="decimal-pad"></TextInput>
+          onChangeText={text => {
+            handler(text);
+          }}
+        />
       );
     default:
       throw Error('not found input type field.');
@@ -82,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogEditionElement;
+export default LogInput;

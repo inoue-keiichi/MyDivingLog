@@ -5,7 +5,7 @@ import { Button, FAB, TextInput } from 'react-native-paper';
 import { InputField } from '../class/InputField';
 import { LogInfo } from '../class/LogInfo';
 import { RouteParam } from '../class/RouteParam';
-import LogEditionElement from '../components/LogEditionElement';
+import LogInput from '../components/logInfo/LogInput';
 import { FontAwesome } from '@expo/vector-icons';
 import NumberPicker from '../components/NumberPicker';
 import { Picker } from '@react-native-picker/picker';
@@ -56,7 +56,7 @@ const LogEdition = () => {
         keyExtractor={item => `${item.name}`}
         renderItem={({ item }) => {
           return (
-            <LogEditionElement
+            <LogInput
               inputType={item}
               handler={(text: string) => {
                 setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
