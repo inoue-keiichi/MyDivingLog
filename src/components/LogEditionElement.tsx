@@ -68,6 +68,7 @@ const LogEditionElement: React.FC<Props> = ({ inputType, handler }) => {
           keyboardType="decimal-pad"></TextInput>
       );
     default:
+      console.log('transfer test');
       throw Error('not found input type field.');
   }
 };
