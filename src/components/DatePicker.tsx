@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { View, StyleSheet, StyleProp, TextStyle } from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import React, { useState } from 'react';
+import { View, StyleSheet, StyleProp, TextStyle } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { TextInput, Colors } from 'react-native-paper';
 
 type Props = {
-  value: string,
-  label: string,
-  style: StyleProp<TextStyle>
-  onChangeText: (text: string) => void
-}
+  value?: string;
+  label: string;
+  style: StyleProp<TextStyle>;
+  onChangeText: (text: string) => void;
+};
 
 const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -30,15 +30,23 @@ const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   };
 
   return (
-    <View style={{ flexDirection: 'row', }}>
+    <View style={{ flexDirection: 'row' }}>
       <TextInput
         mode="outlined"
         value={date}
         label={label}
         editable={false}
         style={style}
-        left={<TextInput.Icon name="calendar" style={styles.icon} onPress={showDatePicker} />}
-        onChangeText={() => { onChangeText(date) }}
+        left={
+          <TextInput.Icon
+            name="calendar"
+            style={styles.icon}
+            onPress={showDatePicker}
+          />
+        }
+        onChangeText={() => {
+          onChangeText(date);
+        }}
       />
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
@@ -47,15 +55,15 @@ const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
-    </View >
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   icon: {
     alignItems: 'center',
-    backgroundColor: Colors.lightBlue100
-  }
-})
+    backgroundColor: Colors.lightBlue100,
+  },
+});
 
 export default DatePicker;

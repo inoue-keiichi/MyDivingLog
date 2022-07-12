@@ -4,7 +4,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { TextInput, Colors } from 'react-native-paper';
 
 type Props = {
-  value: string;
+  value?: string;
   label: string;
   style: StyleProp<TextStyle>;
   onChangeText: (text: string) => void;

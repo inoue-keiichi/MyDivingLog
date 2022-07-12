@@ -1,33 +1,24 @@
 import React from 'react';
-import { useRoute, useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
-import { View, Dimensions, StyleSheet } from 'react-native';
-import { LogInfo } from '../class/LogInfo';
-import { InputType } from '../class/InputType';
+import { View, StyleSheet } from 'react-native';
+import { InputField } from '../class/InputField';
 import DatePicker from '../components/DatePicker';
 import TimePicker from './TimePicker';
 
 interface Props {
-  inputType: InputType;
-  value: string;
-  logInfo: Partial<LogInfo>;
+  inputType: InputField;
+  value?: string;
   handler: (text: string) => void;
 }
 
-const LogEditionElement: React.FC<Props> = ({
-  inputType,
-  value,
-  logInfo,
-  handler,
-}) => {
-  const isString = (item: any): item is string => typeof item === 'string';
+const LogEditionElement: React.FC<Props> = ({ inputType, handler }) => {
   switch (inputType.pattern) {
     case 'text':
       return (
         <View>
           <TextInput
             mode="outlined"
-            value={logInfo[inputType.name] as string}
+            value={inputType.value}
             label={inputType.label}
             style={styles.textInput}
             onChangeText={text => {
@@ -39,7 +30,7 @@ const LogEditionElement: React.FC<Props> = ({
     case 'date':
       return (
         <DatePicker
-          value={value}
+          value={inputType.value}
           label={inputType.label}
           style={styles.textInput}
           onChangeText={text => {
@@ -50,7 +41,7 @@ const LogEditionElement: React.FC<Props> = ({
     case 'time':
       return (
         <TimePicker
-          value={value}
+          value={inputType.value}
           label={inputType.label}
           style={styles.textInput}
           onChangeText={text => {
@@ -58,29 +49,26 @@ const LogEditionElement: React.FC<Props> = ({
           }}
         />
       );
-    case 'time':
+    case 'number':
       return (
-        <TimePicker
-          value={value}
+        <TextInput
+          mode="outlined"
+          value={inputType.value}
           label={inputType.label}
           style={styles.textInput}
-          onChangeText={text => {
-            handler(text);
-          }}
-        />
+          keyboardType="number-pad"></TextInput>
+      );
+    case 'decimal':
+      return (
+        <TextInput
+          mode="outlined"
+          value={inputType.value}
+          label={inputType.label}
+          style={styles.textInput}
+          keyboardType="decimal-pad"></TextInput>
       );
     default:
-      return (
-        // <TextInput
-        //   mode="outlined"
-        //   label={inputType.label}
-        //   style={styles.textInput}
-        //   onChangeText={text => {
-        //     handler(text);
-        //   }}
-        // />
-        <TextInput mode="outlined" keyboardType="decimal-pad"></TextInput>
-      );
+      throw Error('not found input type field.');
   }
 };
 

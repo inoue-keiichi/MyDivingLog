@@ -12,12 +12,14 @@ const logInfoListInit: LogInfo[] = [
     country: 'Japan',
     location: 'Ose',
     point: 'Wannai',
+    maxDepth: 18.0,
   }),
   new LogInfo({
     date: new Date().toLocaleDateString(),
     country: 'Japan',
     location: 'Ose',
     point: 'Wannai',
+    maxDepth: 18.0,
   }),
 ];
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { Button, FAB, TextInput } from 'react-native-paper';
-import { InputType } from '../class/InputType';
+import { InputField } from '../class/InputField';
 import { LogInfo } from '../class/LogInfo';
 import { RouteParam } from '../class/RouteParam';
 import LogEditionElement from '../components/LogEditionElement';
@@ -34,15 +34,19 @@ const LogEdition = () => {
     navigation.navigate('LogList', { logInfo: logInfo });
   };
 
-  const inputTypeList: InputType[] = [
-    new InputType('diveNumber', 'text'),
-    new InputType('date', 'date'),
-    new InputType('country', 'text'),
-    new InputType('location', 'text'),
-    new InputType('point', 'text'),
-    new InputType('entryTime', 'time'),
-    new InputType('exitTime', 'time'),
-    new InputType('maxDepth', 'text'),
+  const inputTypeList: InputField[] = [
+    new InputField('diveNumber', 'number', `${logInfo.id}`),
+    new InputField('date', 'date', logInfo.date),
+    new InputField('country', 'text', logInfo.country),
+    new InputField('location', 'text', logInfo.location),
+    new InputField('point', 'text', logInfo.point),
+    new InputField('entryTime', 'time', logInfo.entryTime),
+    new InputField('exitTime', 'time', logInfo.exitTime),
+    new InputField(
+      'maxDepth',
+      'decimal',
+      logInfo.maxDepth ? `${logInfo.maxDepth}` : undefined,
+    ),
   ];
 
   return (
@@ -54,8 +58,6 @@ const LogEdition = () => {
           return (
             <LogEditionElement
               inputType={item}
-              value={logInfo[item.name] as string}
-              logInfo={logInfo}
               handler={(text: string) => {
                 setLogInfo(new LogInfo({ ...logInfo, [item.name]: text }));
               }}
@@ -90,6 +92,13 @@ const styles = StyleSheet.create({
   listContainer: {
     flexGrow: 1,
     justifyContent: 'center',
+  },
+  textInput: {
+    width: 150,
+    height: 50,
+    marginTop: 10,
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 
