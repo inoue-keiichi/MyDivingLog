@@ -33,7 +33,7 @@ export class InputField {
 type InputType = 'text' | 'date' | 'time' | 'number' | 'decimal';
 
 export type Name =
-  | 'diveNumber'
+  | 'id'
   | 'date'
   | 'country'
   | 'location'
