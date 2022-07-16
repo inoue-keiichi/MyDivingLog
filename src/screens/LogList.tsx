@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { FAB } from 'react-native-paper';
-import { LogInfo } from '../class/LogInfo';
+import { LogInfo } from '../model/logInfo/LogInfo';
 import LogCard from '../components/LogCard';
-import { RouteParam } from '../class/RouteParam';
+import { RouteParam } from '../model/RouteParam';
 
 const logInfoListInit: LogInfo[] = [
   new LogInfo({

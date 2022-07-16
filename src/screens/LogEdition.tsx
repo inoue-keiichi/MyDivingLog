@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { Button, FAB, TextInput } from 'react-native-paper';
-import { InputField } from '../class/InputField';
-import { LogInfo } from '../class/LogInfo';
-import { RouteParam } from '../class/RouteParam';
+import { InputField } from '../model/logInfo/InputField';
+import { LogInfo } from '../model/logInfo/LogInfo';
+import { RouteParam } from '../model/RouteParam';
 import LogInput from '../components/logInfo/LogInput';
 import { FontAwesome } from '@expo/vector-icons';
-import NumberPicker from '../components/NumberPicker';
 import { Picker } from '@react-native-picker/picker';
 
 const LogEdition = () => {

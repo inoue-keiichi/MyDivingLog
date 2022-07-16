@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
-import { InputField } from '../../class/InputField';
+import { InputField } from '../../model/logInfo/InputField';
 import DatePicker from './picker/DatePicker';
 import TimePicker from './picker/TimePicker';
 

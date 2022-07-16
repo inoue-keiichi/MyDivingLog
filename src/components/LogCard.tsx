@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { Dimensions, StyleSheet } from 'react-native';
-import { LogInfo } from '../class/LogInfo';
+import { LogInfo } from '../model/logInfo/LogInfo';
 
 type Props = {
   logInfo: LogInfo;

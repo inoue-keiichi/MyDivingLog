@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, StyleProp, TextStyle } from 'react-native';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { TextInput, Colors } from 'react-native-paper';
-import { InputField } from '../../../class/InputField';
-import { useDatePicker } from '../../../model/picker/DatePicker';
+import React from 'react';
+import { StyleProp, TextStyle } from 'react-native';
+import { useDatePicker } from '../../../model/logInfo/Picker';
 import Picker from './Picker';
-import { PickerProps } from './PickerProps';
 
 type Props = {
   value?: string;
@@ -18,12 +14,5 @@ const DatePicker: React.FC<Props> = ({ value, label, style, onChangeText }) => {
   const props = useDatePicker(style, onChangeText, label, value);
   return <Picker {...props} />;
 };
-
-// const styles = StyleSheet.create({
-//   icon: {
-//     alignItems: 'center',
-//     backgroundColor: Colors.lightBlue100,
-//   },
-// });
 
 export default DatePicker;

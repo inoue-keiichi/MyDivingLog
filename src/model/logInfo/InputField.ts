@@ -1,4 +1,4 @@
-import i18n from '../i18n/initI18n';
+import i18n from '../../i18n/initI18n';
 
 export class InputField {
   private _name: string;
