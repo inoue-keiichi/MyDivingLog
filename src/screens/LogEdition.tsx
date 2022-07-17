@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { FAB } from 'react-native-paper';
-import { LogInfo } from '../model/logInfo/LogInfo';
+import { LogInfo, Suit } from '../model/logInfo/LogInfo';
 import { RouteParam } from '../model/RouteParam';
 import i18n from '../i18n/initI18n';
 import { DatePicker, TimePicker } from '../components/logInfo/Picker';
@@ -112,7 +112,7 @@ const LogEdition = () => {
           />
         </View>
         <View style={{ flexDirection: 'row' }}>
-          <Select<'3mm' | '5mm' | 'dry'>
+          <Select<Suit>
             label={i18n.t('log.suit.title')}
             style={styles.textInput}
             selectedValue={logInfo.suit}

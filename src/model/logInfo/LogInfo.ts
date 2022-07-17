@@ -1,3 +1,5 @@
+export type Suit = '3mm' | '5mm' | 'dry';
+
 export class LogInfo {
   private _id: number;
   private _date?: string;
@@ -9,7 +11,7 @@ export class LogInfo {
   private _intervalMinutes?: number;
   private _maxDepth?: number;
   private _averageDepth?: number;
-  private _suit?: '3mm' | '5mm' | 'dry';
+  private _suit?: Suit;
   private _visibility?: number;
 
   private static NEXT_ID: number = 1;
@@ -103,11 +105,11 @@ export class LogInfo {
     this._averageDepth = averageDepth;
   }
 
-  get suit(): '3mm' | '5mm' | 'dry' | undefined {
+  get suit(): Suit | undefined {
     return this._suit;
   }
 
-  set suit(suit: '3mm' | '5mm' | 'dry' | undefined) {
+  set suit(suit: Suit | undefined) {
     this._suit = suit;
   }
 
