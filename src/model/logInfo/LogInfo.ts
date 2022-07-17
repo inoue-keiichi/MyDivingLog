@@ -8,6 +8,9 @@ export class LogInfo {
   private _exitTime?: string;
   private _intervalMinutes?: number;
   private _maxDepth?: number;
+  private _averageDepth?: number;
+  private _suit?: '3mm' | '5mm' | 'dry';
+  private _visibility?: number;
 
   private static NEXT_ID: number = 1;
 
@@ -90,5 +93,29 @@ export class LogInfo {
 
   set maxDepth(maxDepth: number | undefined) {
     this._maxDepth = maxDepth;
+  }
+
+  get averageDepth(): number | undefined {
+    return this._averageDepth;
+  }
+
+  set avergeDepth(averageDepth: number | undefined) {
+    this._averageDepth = averageDepth;
+  }
+
+  get suit(): '3mm' | '5mm' | 'dry' | undefined {
+    return this._suit;
+  }
+
+  set suit(suit: '3mm' | '5mm' | 'dry' | undefined) {
+    this._suit = suit;
+  }
+
+  get visibility(): number | undefined {
+    return this._visibility;
+  }
+
+  set visibility(visibility: number | undefined) {
+    this._visibility = visibility;
   }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TextInput, Colors } from 'react-native-paper';
+import { Colors } from 'react-native-paper';
 import { Props as PickerProps } from '../../model/logInfo/Picker';
 import { StyleProp, TextStyle } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useDatePicker, useTimePicker } from '../../model/logInfo/Picker';
+import { Input, Text, IconButton } from 'native-base';
 
 type Props = {
   value?: string;
@@ -35,17 +36,21 @@ export const TimePicker: React.FC<Props> = (props: Props) => {
 
 const Picker: React.FC<PickerProps> = (pickerProps: PickerProps) => {
   return (
-    <View style={{ flex: 1, flexDirection: 'row' }}>
-      <TextInput
-        mode="outlined"
+    <View style={pickerProps.style}>
+      <Text fontSize="sm">{pickerProps.label}</Text>
+      <Input
+        size={'2xl'}
+        variant="outline"
+        bg="white"
         value={pickerProps.state}
-        label={pickerProps.label}
         editable={false}
-        style={pickerProps.style}
-        left={
-          <TextInput.Icon
-            name="calendar"
-            style={styles.icon}
+        InputRightElement={
+          <IconButton
+            _icon={pickerProps.icon}
+            variant="solid"
+            rounded="none"
+            w="1/4"
+            h="full"
             onPress={pickerProps.showPicker}
           />
         }

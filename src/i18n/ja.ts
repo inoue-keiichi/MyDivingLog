@@ -9,10 +9,29 @@ const ja: lang = {
     date: '日付',
     country: '国',
     location: '場所',
-    point: 'ポイント',
     entryTime: '潜水開始時刻',
     exitTime: '潜水終了時刻',
-    maxDepth: '最大水深(m)',
+    weather: '天気',
+    visibility: '透明度 (m)',
+    point: {
+      title: 'ポイント',
+      type: {
+        beach: 'ビーチ',
+        boat: 'ボート',
+      },
+    },
+    depth: {
+      max: '最大水深 (m)',
+      ave: '平均水深 (m)',
+    },
+    suit: {
+      title: '天気',
+      item: {
+        _3mm: '3mm',
+        _5mm: '5mm',
+        dry: 'ドライ',
+      },
+    },
   },
   profile: {
     title: 'Profile',

@@ -1,3 +1,5 @@
+import { FontAwesome } from '@expo/vector-icons';
+import { IIconProps } from 'native-base';
 import { useState } from 'react';
 import { StyleProp, TextStyle } from 'react-native';
 
@@ -7,6 +9,7 @@ export interface Props {
   style: StyleProp<TextStyle>;
   state: string;
   stateVisible: boolean;
+  icon: Partial<IIconProps>;
   showPicker: () => void;
   hidePicker: () => void;
   onChangeText: (text: string) => void;
@@ -37,12 +40,18 @@ export const useDatePicker = (
     hidePicker();
   };
 
+  const icon = {
+    as: FontAwesome,
+    name: 'calendar',
+  };
+
   return {
     mode: 'date',
     label,
     style,
     state,
     stateVisible,
+    icon,
     showPicker,
     hidePicker,
     onChangeText,
@@ -82,12 +91,18 @@ export const useTimePicker = (
     hidePicker();
   };
 
+  const icon = {
+    as: FontAwesome,
+    name: 'clock-o',
+  };
+
   return {
     mode: 'time',
     label,
     style,
     state,
     stateVisible,
+    icon,
     showPicker,
     hidePicker,
     onChangeText,

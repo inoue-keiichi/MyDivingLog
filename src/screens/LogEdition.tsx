@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, StyleSheet, FlatList, ColorValue } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { Button, Divider, FAB, TextInput, Text } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 import { LogInfo } from '../model/logInfo/LogInfo';
 import { RouteParam } from '../model/RouteParam';
 import i18n from '../i18n/initI18n';
 import { DatePicker, TimePicker } from '../components/logInfo/Picker';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Divider, Select as SelectBase, Radio, Stack } from 'native-base';
+import { TextInput } from '../components/logInfo/TextInput';
+import { Select } from '../components/logInfo/Select';
 
 const LogEdition = () => {
   const navigation = useNavigation();
@@ -24,27 +27,11 @@ const LogEdition = () => {
     navigation.navigate('LogList', { logInfo: logInfo });
   };
 
-  // const inputTypeList: InputField[] = [
-  //   new InputField('diveNumber', 'number', `${logInfo.id}`),
-  //   new InputField('date', 'date', logInfo.date),
-  //   new InputField('country', 'text', logInfo.country),
-  //   new InputField('location', 'text', logInfo.location),
-  //   new InputField('point', 'text', logInfo.point),
-  //   new InputField('entryTime', 'time', logInfo.entryTime),
-  //   new InputField('exitTime', 'time', logInfo.exitTime),
-  //   new InputField(
-  //     'maxDepth',
-  //     'decimal',
-  //     logInfo.maxDepth ? `${logInfo.maxDepth}` : undefined,
-  //   ),
-  // ];
-
   return (
     <View style={{ flex: 1, padding: 5 }}>
       <ScrollView>
         <View style={{ flexDirection: 'row' }}>
           <TextInput
-            mode="outlined"
             value={`${logInfo.id}`}
             label={i18n.t(`log.diveNumber`)}
             keyboardType={'number-pad'}
@@ -64,7 +51,6 @@ const LogEdition = () => {
         </View>
         <View style={{ flexDirection: 'row' }}>
           <TextInput
-            mode="outlined"
             value={`${logInfo.country}`}
             label={i18n.t(`log.country`)}
             style={styles.textInput}
@@ -73,7 +59,6 @@ const LogEdition = () => {
             }}
           />
           <TextInput
-            mode="outlined"
             value={`${logInfo.location}`}
             label={i18n.t(`log.location`)}
             style={styles.textInput}
@@ -81,16 +66,33 @@ const LogEdition = () => {
               setLogInfo(new LogInfo({ ...logInfo, location: text }));
             }}
           />
+        </View>
+        <View style={{ flexDirection: 'row' }}>
           <TextInput
-            mode="outlined"
             value={`${logInfo.point}`}
-            label={i18n.t(`log.point`)}
+            label={i18n.t(`log.point.title`)}
             style={styles.textInput}
             onChangeText={text => {
               setLogInfo(new LogInfo({ ...logInfo, point: text }));
             }}
           />
+          <View style={styles.textInput}>
+            <Radio.Group
+              name="exampleGroup"
+              defaultValue="1"
+              accessibilityLabel="pick a size">
+              <Stack direction="row" space={4} w="75%" maxW="300px">
+                <Radio value="1" my={1}>
+                  {i18n.t(`log.point.type.beach`)}
+                </Radio>
+                <Radio value="2" my={1}>
+                  {i18n.t(`log.point.type.boat`)}
+                </Radio>
+              </Stack>
+            </Radio.Group>
+          </View>
         </View>
+        <Divider my="5" />
         <View style={{ flexDirection: 'row' }}>
           <TimePicker
             value={logInfo.entryTime}
@@ -106,6 +108,35 @@ const LogEdition = () => {
             style={styles.textInput}
             onChangeText={text => {
               setLogInfo(new LogInfo({ ...logInfo, exitTime: text }));
+            }}
+          />
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <Select<'3mm' | '5mm' | 'dry'>
+            label={i18n.t('log.suit.title')}
+            style={styles.textInput}
+            selectedValue={logInfo.suit}
+            onValueChange={text => {
+              setLogInfo(
+                new LogInfo({
+                  ...logInfo,
+                  suit: text,
+                }),
+              );
+            }}>
+            <SelectBase.Item label={i18n.t('log.suit.item._3mm')} value="3mm" />
+            <SelectBase.Item label={i18n.t('log.suit.item._5mm')} value="5mm" />
+            <SelectBase.Item label={i18n.t('log.suit.item.dry')} value="dry" />
+          </Select>
+          <TextInput
+            value={logInfo.visibility ? `${logInfo.visibility}` : ''}
+            label={i18n.t(`log.visibility`)}
+            keyboardType="number-pad"
+            style={styles.textInput}
+            onChangeText={text => {
+              setLogInfo(
+                new LogInfo({ ...logInfo, visibility: parseInt(text) }),
+              );
             }}
           />
         </View>
@@ -135,8 +166,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textInput: {
-    // width: 150,
-    // height: 50,
     flex: 1,
     marginTop: 5,
     marginLeft: 5,

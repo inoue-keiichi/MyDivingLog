@@ -6,13 +6,32 @@ const en: lang = {
     list: 'Log List',
     edition: 'Log Edition',
     diveNumber: 'Dive No.',
-    date: 'date',
+    date: 'Date',
     country: 'Country',
     location: 'Location',
-    point: 'Point',
     entryTime: 'Entry Time',
     exitTime: 'Exit Time',
-    maxDepth: 'Max Depth (m)',
+    weather: 'Weather',
+    visibility: 'Visibility (m)',
+    point: {
+      title: 'Point',
+      type: {
+        beach: 'Beach',
+        boat: 'Boat',
+      },
+    },
+    depth: {
+      max: 'Max Depth (m)',
+      ave: 'Average Depth (m)',
+    },
+    suit: {
+      title: 'Suit',
+      item: {
+        _3mm: '3mm',
+        _5mm: '5mm',
+        dry: 'dry',
+      },
+    },
   },
   profile: {
     title: 'Profile',

@@ -7,10 +7,29 @@ export interface lang {
     date: string;
     country: string;
     location: string;
-    point: string;
     entryTime: string;
     exitTime: string;
-    maxDepth: string;
+    weather: string;
+    visibility: string;
+    point: {
+      title: string;
+      type: {
+        beach: string;
+        boat: string;
+      };
+    };
+    depth: {
+      max: string;
+      ave: string;
+    };
+    suit: {
+      title: string;
+      item: {
+        _3mm: string;
+        _5mm: string;
+        dry: string;
+      };
+    };
   };
   profile: {
     title: string;
