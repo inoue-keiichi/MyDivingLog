@@ -1,5 +1,6 @@
 import React from 'react';
 import { Radio } from 'native-base';
+import { StyleProp, TextStyle } from 'react-native';
 
 type RadioProps<T> = {
   value: T;
@@ -17,6 +18,7 @@ export const GenericRadio = <T extends string>(props: RadioProps<T>) => {
 type RadioGroupProps<T> = {
   defaultValue?: T;
   onChange: (nextValue: T) => void;
+  style?: StyleProp<TextStyle>;
   children?: React.ReactNode;
 };
 
@@ -28,6 +30,7 @@ export const GenericRadioGroup = <T extends string>(
       name="divingPointType"
       accessibilityLabel="pick a size"
       defaultValue={props.defaultValue}
+      style={props.style}
       onChange={nextValue => {
         props.onChange(nextValue as T);
       }}>

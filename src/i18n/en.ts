@@ -55,8 +55,15 @@ const en: lang = {
       item: {
         _3mm: '3mm',
         _5mm: '5mm',
-        dry: 'dry',
+        dry: 'Dry',
       },
+    },
+    accessory: {
+      title: 'Accessories',
+    },
+    buddy: {
+      title: 'Buddy',
+      comment: 'Comment',
     },
   },
   profile: {

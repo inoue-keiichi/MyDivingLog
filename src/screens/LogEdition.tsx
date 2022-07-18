@@ -13,13 +13,18 @@ import {
   Text,
   Stack,
   Checkbox,
+  Input,
+  VStack,
+  HStack,
+  Center,
+  IconButton,
 } from 'native-base';
 import { TextInput } from '../components/logInfo/TextInput';
 import {
   GenericSelect,
   GenericSelectItem,
 } from '../components/logInfo/GenericSelect';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Kind as TankKind, Tank } from '../model/logInfo/Tank';
 import {
   GenericRadio,
@@ -55,8 +60,8 @@ const LogEdition = () => {
 
   const createLocationView = () => {
     return (
-      <View>
-        <View style={styles.view}>
+      <VStack style={styles.vStack} space={3}>
+        <HStack space={3}>
           <TextInput
             value={`${logInfo.id}`}
             label={i18n.t(`log.diveNumber`)}
@@ -74,8 +79,8 @@ const LogEdition = () => {
               setLogInfo(new LogInfo({ ...logInfo, date: text }));
             }}
           />
-        </View>
-        <View style={styles.view}>
+        </HStack>
+        <HStack space={3}>
           <TextInput
             value={`${logInfo.country}`}
             label={i18n.t(`log.country`)}
@@ -92,49 +97,53 @@ const LogEdition = () => {
               setLogInfo(new LogInfo({ ...logInfo, location: text }));
             }}
           />
+        </HStack>
+        <View>
+          <Text fontSize="sm">{i18n.t(`log.point.title`)}</Text>
+          <HStack space={3}>
+            <Center style={{ flex: 1 }}>
+              <Input
+                value={`${logInfo.point}`}
+                size={'2xl'}
+                variant="outline"
+                bg="white"
+                onChangeText={text => {
+                  setLogInfo(new LogInfo({ ...logInfo, point: text }));
+                }}
+              />
+            </Center>
+            <Center style={{ flex: 1 }}>
+              <GenericRadioGroup<DivingType>
+                defaultValue={logInfo.divingType}
+                onChange={nextValue => {
+                  setLogInfo(
+                    new LogInfo({ ...logInfo, divingType: nextValue }),
+                  );
+                }}>
+                <HStack direction="row" space={3}>
+                  <GenericRadio<DivingType> value="beach">
+                    {i18n.t(`log.point.type.beach`)}
+                  </GenericRadio>
+                  <GenericRadio<DivingType> value="boat">
+                    {i18n.t(`log.point.type.boat`)}
+                  </GenericRadio>
+                </HStack>
+              </GenericRadioGroup>
+            </Center>
+          </HStack>
         </View>
-        <View style={styles.view}>
-          <TextInput
-            value={`${logInfo.point}`}
-            label={i18n.t(`log.point.title`)}
-            style={styles.input}
-            onChangeText={text => {
-              setLogInfo(new LogInfo({ ...logInfo, point: text }));
-            }}
-          />
-          <View
-            style={
-              (styles.input,
-              { justifyContent: 'center', backgroundColor: 'yellow' })
-            }>
-            <GenericRadioGroup<DivingType>
-              defaultValue={logInfo.divingType}
-              onChange={nextValue => {
-                setLogInfo(new LogInfo({ ...logInfo, divingType: nextValue }));
-              }}>
-              <Stack direction="row" space={4}>
-                <GenericRadio<DivingType> value="beach">
-                  {i18n.t(`log.point.type.beach`)}
-                </GenericRadio>
-                <GenericRadio<DivingType> value="boat">
-                  {i18n.t(`log.point.type.boat`)}
-                </GenericRadio>
-              </Stack>
-            </GenericRadioGroup>
-          </View>
-        </View>
-        <View style={styles.view}>
+        <HStack space={3}>
           <TextInput
             value={logInfo.shop}
             label={i18n.t(`log.shop`)}
-            style={styles.input}
+            style={{ flex: 1 }}
             onChangeText={text => {
               setLogInfo(new LogInfo({ ...logInfo, shop: text }));
             }}
           />
           <GenericSelect<Weather>
             label={i18n.t('log.weather.title')}
-            style={styles.input}
+            style={{ flex: 1 }}
             selectedValue={logInfo.weather}
             onValueChange={text => {
               setLogInfo(
@@ -177,15 +186,15 @@ const LogEdition = () => {
               value="snowy"
             />
           </GenericSelect>
-        </View>
-      </View>
+        </HStack>
+      </VStack>
     );
   };
 
   const createSeaConditionView = () => {
     return (
-      <View>
-        <View style={styles.view}>
+      <VStack style={styles.vStack} space={3}>
+        <HStack space={3}>
           <TimePicker
             value={logInfo.entryTime}
             label={i18n.t(`log.entryTime`)}
@@ -202,8 +211,8 @@ const LogEdition = () => {
               setLogInfo(new LogInfo({ ...logInfo, exitTime: text }));
             }}
           />
-        </View>
-        <View style={styles.view}>
+        </HStack>
+        <HStack space={3}>
           <GenericSelect<string>
             label={i18n.t('log.pressure.start')}
             style={styles.input}
@@ -244,8 +253,8 @@ const LogEdition = () => {
               />
             ))}
           </GenericSelect>
-        </View>
-        <View style={styles.view}>
+        </HStack>
+        <HStack space={3}>
           <TextInput
             value={logInfo.waterTemp ? `${logInfo.waterTemp}` : ''}
             label={i18n.t(`log.waterTemp`)}
@@ -268,15 +277,15 @@ const LogEdition = () => {
               );
             }}
           />
-        </View>
-      </View>
+        </HStack>
+      </VStack>
     );
   };
 
   const createEquipmentView = () => {
     return (
-      <View>
-        <View style={styles.view}>
+      <VStack style={styles.vStack} space={3}>
+        <HStack space={3}>
           <GenericSelect<Suit>
             label={i18n.t('log.suit.title')}
             style={styles.input}
@@ -302,8 +311,8 @@ const LogEdition = () => {
               setLogInfo(new LogInfo({ ...logInfo, weight: parseInt(text) }));
             }}
           />
-        </View>
-        <View style={styles.view}>
+        </HStack>
+        <HStack space={3}>
           <GenericSelect<TankKind>
             label={i18n.t('log.tank.title')}
             style={styles.input}
@@ -351,9 +360,10 @@ const LogEdition = () => {
               );
             }}
           />
-        </View>
-        <View style={styles.view}>
-          <Stack direction="row" space={4}>
+        </HStack>
+        <View>
+          <Text>{i18n.t('log.accessory.title')}</Text>
+          <HStack space={3}>
             <Checkbox
               defaultIsChecked={daikon}
               value="daikon"
@@ -378,18 +388,40 @@ const LogEdition = () => {
               onChange={setLight}>
               <Ionicons name="ios-flashlight-sharp" size={40} color="black" />
             </Checkbox>
-          </Stack>
+          </HStack>
         </View>
-      </View>
+      </VStack>
     );
   };
 
   const createBuddyView = () => {
-    return <View></View>;
+    return (
+      <VStack style={styles.vStack} mb={150} space={3}>
+        <TextInput
+          label={i18n.t(`log.buddy.title`)}
+          style={styles.input}
+          onChangeText={text => {
+            setLogInfo(new LogInfo({ ...logInfo, country: text }));
+          }}
+          InputRightElement={
+            <IconButton
+              _icon={{
+                as: FontAwesome,
+                name: 'plus',
+              }}
+              variant="solid"
+              rounded="none"
+              w="1/4"
+              h="full"
+              onPress={() => {}}
+            />
+          }></TextInput>
+      </VStack>
+    );
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <VStack style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1, padding: 5 }}>
         {createLocationView()}
         <Divider my="5" />
@@ -404,7 +436,7 @@ const LogEdition = () => {
         style={[styles.fab, { right: 30 }]}
         onPress={() => update()}
       />
-    </View>
+    </VStack>
   );
 };
 
@@ -419,12 +451,14 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+  },
+  vStack: {
+    flex: 1,
     marginTop: 5,
     marginLeft: 5,
     marginRight: 5,
   },
   checkBox: {
-    marginTop: 5,
     marginLeft: 5,
   },
 });

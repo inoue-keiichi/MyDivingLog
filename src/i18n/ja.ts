@@ -58,6 +58,13 @@ const ja: lang = {
         dry: 'ドライ',
       },
     },
+    accessory: {
+      title: 'アクセサリー',
+    },
+    buddy: {
+      title: 'バディ',
+      comment: 'コメント',
+    },
   },
   profile: {
     title: 'Profile',

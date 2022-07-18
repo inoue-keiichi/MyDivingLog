@@ -56,6 +56,13 @@ export interface lang {
         dry: string;
       };
     };
+    accessory: {
+      title: string;
+    };
+    buddy: {
+      title: string;
+      comment: string;
+    };
   };
   profile: {
     title: string;
