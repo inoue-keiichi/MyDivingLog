@@ -5,7 +5,7 @@ import { Input, Text } from 'native-base';
 
 type Props = {
   value?: string;
-  label: string;
+  label?: string;
   style: StyleProp<TextStyle>;
   keyboardType?: KeyboardTypeOptions;
   onChangeText: (text: string) => void;
@@ -20,6 +20,7 @@ export const TextInput: React.FC<Props> = (props: Props) => {
         size={'2xl'}
         variant="outline"
         bg="white"
+        keyboardType={props.keyboardType}
         onChangeText={props.onChangeText}
       />
     </View>

@@ -11,8 +11,34 @@ const en: lang = {
     location: 'Location',
     entryTime: 'Entry Time',
     exitTime: 'Exit Time',
-    weather: 'Weather',
     visibility: 'Visibility (m)',
+    waterTemp: 'Water Temp (\u2103)',
+    weight: 'Weight (\u338F)',
+    shop: 'Diving Shop',
+    weather: {
+      title: 'Weather',
+      item: {
+        sunny: 'Sunny',
+        partlySunny: 'Partly Sunny',
+        cloudy: 'Cloudy',
+        rainy: 'Rainy',
+        snowy: 'Snowy',
+      },
+    },
+    pressure: {
+      title: 'Pressure',
+      start: 'Pressure Start (\u338F/\u33A0)',
+      end: 'Pressure End (\u338F/\u33A0)',
+    },
+    tank: {
+      title: 'Tank',
+      unit: 'L',
+      kind: {
+        aluminum: 'Aluminum',
+        steel: 'Steel',
+        nitrox: 'Nitrox',
+      },
+    },
     point: {
       title: 'Point',
       type: {

@@ -11,8 +11,34 @@ const ja: lang = {
     location: '場所',
     entryTime: '潜水開始時刻',
     exitTime: '潜水終了時刻',
-    weather: '天気',
     visibility: '透明度 (m)',
+    waterTemp: '水温 (\u2103)',
+    weight: 'ウェイト (\u338F)',
+    shop: 'ダイビングショップ',
+    weather: {
+      title: '天気',
+      item: {
+        sunny: '晴れ',
+        partlySunny: '晴れ/曇り',
+        cloudy: '曇り',
+        rainy: '雨',
+        snowy: '雪',
+      },
+    },
+    pressure: {
+      title: 'タンク圧',
+      start: 'タンク圧開始 (\u338F/\u33A0)',
+      end: 'タンク圧終了 (\u338F/\u33A0)',
+    },
+    tank: {
+      title: 'タンク',
+      unit: 'L',
+      kind: {
+        aluminum: 'アルミ',
+        steel: 'スチール',
+        nitrox: 'ナイトロックス',
+      },
+    },
     point: {
       title: 'ポイント',
       type: {
@@ -25,7 +51,7 @@ const ja: lang = {
       ave: '平均水深 (m)',
     },
     suit: {
-      title: '天気',
+      title: 'スーツ',
       item: {
         _3mm: '3mm',
         _5mm: '5mm',

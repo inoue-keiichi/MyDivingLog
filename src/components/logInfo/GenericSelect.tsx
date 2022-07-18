@@ -11,7 +11,7 @@ type Props<T> = {
   children?: React.ReactNode;
 };
 
-export const Select = <T extends string>(props: Props<T>) => {
+export const GenericSelect = <T extends string>(props: Props<T>) => {
   return (
     <View style={props.style}>
       <Text fontSize="sm">{props.label}</Text>
@@ -29,5 +29,23 @@ export const Select = <T extends string>(props: Props<T>) => {
         {props.children}
       </SelectBase>
     </View>
+  );
+};
+
+type ItemProps<T> = {
+  key: React.Key;
+  label?: string;
+  value: T;
+  leftIcon?: JSX.Element | JSX.Element[] | undefined;
+};
+
+export const GenericSelectItem = <T extends string>(props: ItemProps<T>) => {
+  return (
+    <SelectBase.Item
+      key={props.key}
+      leftIcon={props.leftIcon}
+      label={props.label ? props.label : ''}
+      value={props.value}
+    />
   );
 };

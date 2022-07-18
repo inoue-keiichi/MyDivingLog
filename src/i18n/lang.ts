@@ -9,8 +9,34 @@ export interface lang {
     location: string;
     entryTime: string;
     exitTime: string;
-    weather: string;
     visibility: string;
+    waterTemp: string;
+    weight: string;
+    shop: string;
+    weather: {
+      title: string;
+      item: {
+        sunny: string;
+        partlySunny: string;
+        cloudy: string;
+        rainy: string;
+        snowy: string;
+      };
+    };
+    pressure: {
+      title: string;
+      start: string;
+      end: string;
+    };
+    tank: {
+      title: string;
+      unit: string;
+      kind: {
+        aluminum: string;
+        steel: string;
+        nitrox: string;
+      };
+    };
     point: {
       title: string;
       type: {
