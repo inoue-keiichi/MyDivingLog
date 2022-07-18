@@ -185,7 +185,7 @@ const LogEdition = () => {
   const createSeaConditionView = () => {
     return (
       <View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <TimePicker
             value={logInfo.entryTime}
             label={i18n.t(`log.entryTime`)}
@@ -203,7 +203,7 @@ const LogEdition = () => {
             }}
           />
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <GenericSelect<string>
             label={i18n.t('log.pressure.start')}
             style={styles.input}
@@ -245,7 +245,7 @@ const LogEdition = () => {
             ))}
           </GenericSelect>
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <TextInput
             value={logInfo.waterTemp ? `${logInfo.waterTemp}` : ''}
             label={i18n.t(`log.waterTemp`)}
@@ -276,7 +276,7 @@ const LogEdition = () => {
   const createEquipmentView = () => {
     return (
       <View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <GenericSelect<Suit>
             label={i18n.t('log.suit.title')}
             style={styles.input}
@@ -303,7 +303,7 @@ const LogEdition = () => {
             }}
           />
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <GenericSelect<TankKind>
             label={i18n.t('log.tank.title')}
             style={styles.input}
@@ -352,7 +352,7 @@ const LogEdition = () => {
             }}
           />
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.view}>
           <Stack direction="row" space={4}>
             <Checkbox
               defaultIsChecked={daikon}
