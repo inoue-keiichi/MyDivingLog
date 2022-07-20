@@ -61,7 +61,7 @@ export interface lang {
     };
     buddy: {
       title: string;
-      comment: string;
+      placeholder: string;
     };
   };
   profile: {

@@ -63,7 +63,7 @@ const en: lang = {
     },
     buddy: {
       title: 'Buddy',
-      comment: 'Comment',
+      placeholder: 'Write your comment.',
     },
   },
   profile: {

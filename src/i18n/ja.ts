@@ -63,7 +63,7 @@ const ja: lang = {
     },
     buddy: {
       title: 'バディ',
-      comment: 'コメント',
+      placeholder: 'コメント',
     },
   },
   profile: {

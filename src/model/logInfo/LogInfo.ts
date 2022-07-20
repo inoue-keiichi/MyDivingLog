@@ -1,3 +1,4 @@
+import { Buddy } from './Buddy';
 import { Tank } from './Tank';
 
 export type DivingType = 'beach' | 'boat';
@@ -28,11 +29,13 @@ export class LogInfo {
   private _daikon?: boolean;
   private _camera?: boolean;
   private _light?: boolean;
+  private _buddies: Buddy[];
 
   private static NEXT_ID: number = 1;
 
   constructor(logInfo: Partial<LogInfo>) {
     this._id = LogInfo.NEXT_ID;
+    this._buddies = [];
 
     Object.assign(this, logInfo);
     if (logInfo.id == null) {
@@ -222,5 +225,13 @@ export class LogInfo {
 
   set light(light: boolean | undefined) {
     this._light = light;
+  }
+
+  get buddies(): Buddy[] {
+    return this._buddies;
+  }
+
+  set buddies(buddies: Buddy[]) {
+    this._buddies = buddies;
   }
 }

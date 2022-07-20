@@ -30,6 +30,10 @@ import {
   GenericRadio,
   GenericRadioGroup,
 } from '../components/logInfo/GenericRadio';
+import { BuddyCard } from '../components/logInfo/BuddyCard';
+import { Buddy } from '../model/logInfo/Buddy';
+import { useBuddyNameInput } from '../model/logInfo/BuddyNameInput';
+import { BuddyNameInput } from '../components/logInfo/BuddyNameInput';
 
 const LogEdition = () => {
   const navigation = useNavigation();
@@ -48,8 +52,11 @@ const LogEdition = () => {
   const [camera, setCamera] = useState(logInfoInit.camera);
   const [light, setLight] = useState(logInfoInit.light);
 
+  const [buddies, setBuddies] = useState<Buddy[]>(logInfoInit.buddies);
+
   const update = () => {
-    const tmp = new LogInfo({ ...logInfo, daikon, camera, light });
+    const tmp = new LogInfo({ ...logInfo, daikon, camera, light, buddies });
+    console.log(buddies);
     navigation.navigate('LogList', { logInfo: tmp });
   };
 
@@ -397,25 +404,23 @@ const LogEdition = () => {
   const createBuddyView = () => {
     return (
       <VStack style={styles.vStack} mb={150} space={3}>
-        <TextInput
-          label={i18n.t(`log.buddy.title`)}
-          style={styles.input}
-          onChangeText={text => {
-            setLogInfo(new LogInfo({ ...logInfo, country: text }));
-          }}
-          InputRightElement={
-            <IconButton
-              _icon={{
-                as: FontAwesome,
-                name: 'plus',
-              }}
-              variant="solid"
-              rounded="none"
-              w="1/4"
-              h="full"
-              onPress={() => {}}
+        <BuddyNameInput buddies={buddies} setBuddies={setBuddies} />
+        {buddies.map((buddy, index) => {
+          return (
+            <BuddyCard
+              key={index}
+              id={buddy.id}
+              name={buddy.name}
+              defaultComment={buddy.comment}
+              buddies={buddies}
+              setBuddies={setBuddies}
+              // onPress={() => {
+              //   setBuddies(buddies.filter(item => item.id !== buddy.id));
+              // }}
+              // onChangeText={text => {}}
             />
-          }></TextInput>
+          );
+        })}
       </VStack>
     );
   };
