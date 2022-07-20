@@ -404,7 +404,14 @@ const LogEdition = () => {
   const createBuddyView = () => {
     return (
       <VStack style={styles.vStack} mb={150} space={3}>
-        <BuddyNameInput buddies={buddies} setBuddies={setBuddies} />
+        <BuddyNameInput
+          onChangeText={text => {
+            setBuddies([...buddies, new Buddy(text)]);
+          }}
+          onPress={text => {
+            setBuddies([...buddies, new Buddy(text)]);
+          }}
+        />
         {buddies.map((buddy, index) => {
           return (
             <BuddyCard

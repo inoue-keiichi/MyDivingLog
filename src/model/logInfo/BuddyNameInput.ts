@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Buddy } from './Buddy';
 
 export type Props = {
-  buddies: Buddy[];
-  setBuddies: (value: React.SetStateAction<Buddy[]>) => void;
+  onChangeText: (text: string) => void;
+  onPress: (input: string) => void;
 };
 
 export const useBuddyNameInput = (props: Props) => {
@@ -20,7 +20,8 @@ export const useBuddyNameInput = (props: Props) => {
   };
 
   const onPress = () => {
-    props.setBuddies([...props.buddies, new Buddy(name!)]);
+    // props.setBuddies([...props.buddies, new Buddy(input!)]);
+    props.onPress(name!);
     setName(undefined);
     setDisabled(true);
   };
