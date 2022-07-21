@@ -18,6 +18,7 @@ import {
   HStack,
   Center,
   IconButton,
+  FlatList,
 } from 'native-base';
 import { TextInput } from '../components/logInfo/TextInput';
 import {
@@ -412,19 +413,19 @@ const LogEdition = () => {
             setBuddies([...buddies, new Buddy(text)]);
           }}
         />
-        {buddies.map((buddy, index) => {
+        {buddies.map((item, index) => {
           return (
             <BuddyCard
               key={index}
-              id={buddy.id}
-              name={buddy.name}
-              defaultComment={buddy.comment}
-              buddies={buddies}
-              setBuddies={setBuddies}
-              // onPress={() => {
-              //   setBuddies(buddies.filter(item => item.id !== buddy.id));
-              // }}
-              // onChangeText={text => {}}
+              name={item.name}
+              defaultComment={item.comment}
+              onPress={() => {
+                setBuddies(buddies.filter(buddy => buddy.id !== item.id));
+              }}
+              onChangeText={text => {
+                buddies.filter(buddy => buddy.id === item.id)[0].comment = text;
+                setBuddies(buddies);
+              }}
             />
           );
         })}

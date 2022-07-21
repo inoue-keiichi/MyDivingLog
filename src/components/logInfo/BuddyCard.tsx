@@ -14,19 +14,14 @@ import {
   Icon,
   IconButton,
 } from 'native-base';
-import { GestureResponderEvent, StyleProp, TextStyle } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import i18n from '../../i18n/initI18n';
-import { Buddy } from '../../model/logInfo/Buddy';
 
 type Props = {
-  id: number;
   name: string;
   defaultComment?: string;
-  buddies: Buddy[];
-  setBuddies: (value: React.SetStateAction<Buddy[]>) => void;
-  // onPress: (event: GestureResponderEvent) => void;
-  // onChangeText: (text: string) => void;
+  onPress: () => void;
+  onChangeText: (text: string) => void;
 };
 
 export const BuddyCard: React.FC<Props> = (props: Props) => {
@@ -56,11 +51,7 @@ export const BuddyCard: React.FC<Props> = (props: Props) => {
             variant="solid"
             borderRadius="full"
             ml="auto"
-            onPress={() => {
-              props.setBuddies(
-                props.buddies.filter(item => item.id !== props.id),
-              );
-            }}
+            onPress={props.onPress}
           />
         </HStack>
         <TextArea
@@ -68,11 +59,7 @@ export const BuddyCard: React.FC<Props> = (props: Props) => {
           autoCompleteType={undefined}
           placeholder={i18n.t('log.buddy.placeholder')}
           defaultValue={props.defaultComment}
-          onChangeText={text => {
-            props.buddies.filter(item => item.id === props.id)[0].comment =
-              text;
-            props.setBuddies(props.buddies);
-          }}
+          onChangeText={props.onChangeText}
         />
       </Stack>
     </Box>
