@@ -1,8 +1,5 @@
 # What's this?
-firebase を使ったアプリ作成
+react-native を試しに使ってみた
 
 # 言語
 TypeScript
-
-# フレームワーク
-reactnative
